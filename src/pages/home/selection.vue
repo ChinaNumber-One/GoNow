@@ -92,6 +92,7 @@
         flex-wrap: nowrap
         width:41.2rem;
         .selCont
+          position:relative
           width:6.68rem
           margin-right:.2rem
           .sel-img

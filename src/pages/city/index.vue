@@ -24,7 +24,7 @@
     },
     methods: {
       getCityDate () {
-        axios.get('/static/city.json')
+        axios.get('/api/city.html')
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },

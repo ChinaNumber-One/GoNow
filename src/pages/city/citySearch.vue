@@ -26,14 +26,6 @@ export default {
       filterResult: []
     }
   },
-  methods: {
-    handleChooseCity (city) {
-      this.getCity(city)
-      this.$nextTick(() => {
-        this.$router.push('/destination/' + city)
-      })
-    }
-  },
   computed: {
     result () {
       const result = []
@@ -49,6 +41,12 @@ export default {
     }
   },
   methods: {
+    handleChooseCity (city) {
+      this.getCity(city)
+      this.$nextTick(() => {
+        this.$router.push('/destination/' + city)
+      })
+    },
     handleInputChange (e) {
       const value = e.target.value.toLowerCase()
       if (value) {

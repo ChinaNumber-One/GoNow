@@ -10,6 +10,8 @@ import Login from '@/pages/login/login.vue'
 import Register from '@/pages/register/register.vue'
 import Message from '@/pages/message/index.vue'
 import Setting from '@/pages/setting/index.vue'
+import SelectionDetail from '@/pages/home/detail/selectionDetail.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -59,6 +61,10 @@ export default new Router({
       path: '/setting',
       name: 'setting',
       component: Setting
+    }, {
+      path: '/selectionDetail/:id',
+      name: 'selectionDetail',
+      component: SelectionDetail
     }
   ]
 })

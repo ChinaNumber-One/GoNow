@@ -1,0 +1,10 @@
+{
+	"ret":true,
+	"data":{
+		"name":"程序猿",
+		"userimg":"../../../static/img/userdefault.png",
+		"fansnum":"293",
+		"attentionnum":"135",
+		"city":"北京"
+	}
+}

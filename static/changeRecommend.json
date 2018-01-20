@@ -1,0 +1,35 @@
+{
+	"recommend":[{
+      "id":"hot0001",
+      "address":"广东1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0002",
+      "address":"深圳1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0003",
+      "address":"广东1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0004",
+      "address":"深圳1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0005",
+      "address":"广东1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0006",
+      "address":"深圳1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0007",
+      "address":"广东1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    },{
+      "id":"hot0008",
+      "address":"深圳1",
+      "imgUrl":"../../../static/img/hotel3.png"
+    }]
+}

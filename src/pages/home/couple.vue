@@ -9,6 +9,13 @@
   	  	<li class="selCont" 
   	  		v-for="item of coupleInfo"
   	  		:key="item.id">
+          <div class="sel-date">
+            <span class="date-time">{{item.date}}</span>
+            <span class="date-date">
+              <i class="date-year">{{item.year}}</i>
+              <i class="date-year">{{item.month}}</i>
+            </span>
+          </div>
   	  	  <img class="sel-img" :src="item.imgUrl">
   	  	  <p class="sel-desc" v-text="item.title"></p>
   	  	  <div class="sel-res">
@@ -89,12 +96,38 @@
         flex-wrap: nowrap
         width:41.2rem;
         .selCont
+          position:relative
           width:6.68rem
           height:5.35rem
           margin-right:.2rem
           .sel-img
             width:6.68rem
             height:3.7rem
+          .sel-date
+            position: absolute
+            display:flex
+            justify-content: center
+            background: #ffbf1c
+            top:0
+            left:.3rem
+            height:.44rem
+            width: 1.4rem
+            border-bottom-left-radius: .1rem
+            border-bottom-right-radius: .1rem
+            padding:.1rem 0
+            .date-time
+              font-size:.32rem
+              font-weight:900
+              line-height:.44rem
+              padding-right:.06rem
+              border-right: .01rem solid #000
+            .date-date
+              display:flex
+              flex-direction: column
+              justify-content: space-around
+              text-align: center
+              padding-left: .06rem
+              font-size: .2rem
           .sel-desc
             font-weight:800
             display:-webkit-box

@@ -38,7 +38,7 @@
         babytripInfo: [],
         movietripInfo: [],
         isTop: false,
-        startpage: true
+        startpage: false
       }
     },
     computed: {
@@ -80,9 +80,9 @@
       this.getIndexData()
     },
     mounted () {
-      setTimeout(() => {
-        this.startpage = false
-      }, 3000)
+      // setTimeout(() => {
+      //   this.startpage = false
+      // }, 3000)
     }
   }
 </script>

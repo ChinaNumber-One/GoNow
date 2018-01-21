@@ -16,7 +16,9 @@
         <li class="hotviews-item" v-for="item in recommend" :key="item.id" @click="handlChangeCity(item.place)">
           <router-link :to="'/destination/' + item.place" class="hotviews-item" tag="div">
             <img v-lazy="item.imgUrl" alt="" class="item-img" >
-
+            <div class="city-box">
+              {{item.place}}
+            </div>
           </router-link>
         </li>
       </ul>
@@ -152,8 +154,21 @@ export default {
   }
   .hotviews-item {
     display: flex;
+    position: relative;
     white-space: nowrap;
     width: 3.3rem;
+  }
+  .city-box {
+    position: absolute;
+    width: 2rem;
+    height: 1rem;
+    margin:.5rem;
+    background: rgba(255,255,255,.6);
+    border-radius: .1rem;
+    line-height: 1rem;
+    text-align: center;
+    font-size: .36rem;
+    font-weight: 900;
   }
   .item-img {
     width: 3rem;

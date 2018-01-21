@@ -12,8 +12,8 @@ import Message from '@/pages/message/index.vue'
 import Setting from '@/pages/setting/index.vue'
 import Photography from '@/pages/home/photography.vue'
 import SelectionDetail from '@/pages/home/detail/selectionDetail.vue'
+import Ticket from '@/pages/home/ticket.vue'
 
->>>>>>> e36ddc343f412079f9e128e3093fe997e50e0f5c
 Vue.use(Router)
 
 export default new Router({
@@ -64,15 +64,17 @@ export default new Router({
       name: 'setting',
       component: Setting
     }, {
-<<<<<<< HEAD
       path: '/photography',
       name: 'photography',
       component: Photography
-=======
+    }, {
       path: '/selectionDetail/:id',
       name: 'selectionDetail',
       component: SelectionDetail
->>>>>>> e36ddc343f412079f9e128e3093fe997e50e0f5c
+    }, {
+      path: '/ticket',
+      name: 'ticket',
+      component: Ticket
     }
   ]
 })

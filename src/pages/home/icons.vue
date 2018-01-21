@@ -16,10 +16,10 @@
       <img src="../../../static/img/目的地.png" alt="" class="icons-img">
       <p class="icons-title">目的地</p>
     </router-link>  
-    <div class="icons-item" >
+    <router-link to="/ticket"  tag="div" class="icons-item" >
       <img src="../../../static/img/车票.png" alt="" class="icons-img">
       <p class="icons-title">车票</p>
-    </div> 
+    </router-link> 
     <router-link to="/photography" tag="div" class="icons-item" >
       <img src="../../../static/img/摄影.png" alt="" class="icons-img">
       <p class="icons-title">摄影</p>

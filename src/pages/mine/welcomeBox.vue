@@ -3,7 +3,7 @@
     <div class="welcome-con">
       <div class="login-entrance">
         <div class="user-img">
-          <img src="../../../static/img/userdefault.png" alt="" class="userimg" v-if="showInfo">
+          <img :src="userimg" alt="" class="userimg" v-if="showInfo">
           <img src="../../../static/img/userimg.png" alt="" class="userimg" v-if="!showInfo">
         </div>
         <router-link to="/login" tag="div" class="login-txt" v-if="!showInfo">

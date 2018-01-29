@@ -3,11 +3,10 @@
     <div class="start-page" v-if="startpage">
       <img src="../../../static/img/logo.jpg" alt="" class="start-img">
     </div>
-    <div class="banner-top" v-show="!startpage">
+    <div class="banner-top" v-show="!startpage&&bannerInfo">
       <a :href="bannerInfo[this.getRandBG].linkUrl">
-      <img class="top-img" :src="bannerInfo[this.getRandBG].imgUrl
-" >
-</a>
+        <img class="top-img" :src="bannerInfo[this.getRandBG].imgUrl" >
+      </a>
     </div>
     <search v-show="!startpage"></search>
     <icons v-show="!startpage"></icons>
@@ -49,7 +48,7 @@
     },
     methods: {
       getIndexData () {
-        axios.get('/api/index.html')
+        axios.get('/common/index.html')
         .then(this.handleGetDataSucc.bind(this))
         .catch(this.handleGetDataErr.bind(this))
       },
@@ -77,12 +76,8 @@
       commonFooter
     },
     created () {
+      window.scrollTo(0, 0)
       this.getIndexData()
-    },
-    mounted () {
-      // setTimeout(() => {
-      //   this.startpage = false
-      // }, 3000)
     }
   }
 </script>

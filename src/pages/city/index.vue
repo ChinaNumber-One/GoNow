@@ -1,8 +1,8 @@
 <template>
   <div class="main">
   	<city-header></city-header>
-    <city-search :cityList="cityList"></city-search>
-    <city-list :cityList="cityList"></city-list>
+    <city-search :cityList="cityList" :router="router" :type="type"></city-search>
+    <city-list :cityList="cityList" :router="router" :type="type"></city-list>
   </div>
 </template>
 
@@ -19,12 +19,14 @@
     },
     data () {
       return {
-        cityList: {}
+        cityList: {},
+        router: '',
+        type: ''
       }
     },
     methods: {
       getCityDate () {
-        axios.get('/api/city.html')
+        axios.get('/common/city_list.html')
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
@@ -40,6 +42,22 @@
     },
     created () {
       this.getCityDate()
+    },
+    beforeRouteEnter (to, from, next) {
+      if (from.name === 'hotel') {
+        next((vm) => {
+          vm.router = 'hotel'
+        })
+      } else if (from.name === 'destination') {
+        next((vm) => {
+          vm.router = 'destination'
+        })
+      } else if (from.name === 'ticket') {
+        next((vm) => {
+          vm.router = 'ticket'
+          vm.type = to.params.type
+        })
+      }
     }
   }
 </script>

@@ -1,0 +1,31 @@
+{
+	"ret":true,
+	"data":{
+		"motherland":[{
+			"imgUrl":"/static/img/photo1.png"
+		},{
+			"imgUrl":"/static/img/photo2.png"
+		},{
+			"imgUrl":"/static/img/photo3.png"
+		},{
+			"imgUrl":"/static/img/photo4.png"
+		},{
+			"imgUrl":"/static/img/photo5.png"
+		},{
+			"imgUrl":"/static/img/photo6.png"
+		}],
+		"foreign":[{
+			"imgUrl":"/static/img/photo7.png"
+		},{
+			"imgUrl":"/static/img/photo8.png"
+		},{
+			"imgUrl":"/static/img/photo9.png"
+		},{
+			"imgUrl":"/static/img/photo10.png"
+		},{
+			"imgUrl":"/static/img/photo11.png"
+		},{
+			"imgUrl":"/static/img/photo12.png"
+		}]
+	}
+}

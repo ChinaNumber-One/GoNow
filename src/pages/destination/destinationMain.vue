@@ -1,7 +1,9 @@
 <template>
 	<div class="destination-main">
-		<div class="main-adds">
-			<img src="../../../static/img/adds.jpg" alt="">
+		<div class="main-adds" v-if="addImg">
+      <a :href="this.addLink">
+			 <img :src="this.addImg" alt="">
+      </a>
 		</div>
 		<div class="main-hotviews">
         <main-destination :views="views"></main-destination>
@@ -21,12 +23,19 @@
       mainTravels,
       mainNoscroll
     },
+    data () {
+      return {
+        addImg: '',
+        addLink: ''
+      }
+    },
     props: ['adds', 'views', 'travels', 'strategy'],
-    computed: {
-      getRandBG () {
+    watch: {
+      adds () {
         const maxIndex = this.adds.length - 1
-        const randomIndex = Math.round(Math.random() * maxIndex)
-        return this.adds[randomIndex]
+        const randomIndex = Math.abs(Math.round(Math.random() * maxIndex))
+        this.addImg = this.adds[randomIndex].imgUrl
+        this.addLink = this.adds[randomIndex].linkUrl
       }
     }
   }
@@ -34,10 +43,12 @@
 
 <style scoped>
   .main-adds {
-    margin: .2rem;
+    margin: .1rem;
+    height: 2rem;
   }
   .main-adds img{
     width: 100%;
+    height: 100%;
   }
   .main-hotviews {
     overflow: hidden;

@@ -53,7 +53,7 @@
         this.passShow = !this.passShow
       },
       handleBack () {
-        this.$router.go(-1)
+        this.$router.push('/mine')
       },
       getValidation () {
         const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
@@ -61,7 +61,7 @@
         if (regPhone.test(str)) {
           console.log(str)
           this.tipsBox = false
-          axios.post('/api/send_register_code.html',
+          axios.post('/common/send_register_code.html',
             {
               phone: str
             }).then(this.handleIdentifyingSucc.bind(this))
@@ -86,7 +86,7 @@
         }
       },
       nameConfirm () {
-        const regName = /^.{3,15}/
+        const regName = /^.{3,15}$/
         const str = this.$refs.conName.value
         if (regName.test(str)) {
           this.hasNickname = true
@@ -99,7 +99,7 @@
         }
       },
       passConfirm () {
-        const regPass = /^[0-9a-z]{6,15}/
+        const regPass = /^[0-9a-z]{6,15}$/
         const str = this.$refs.passtype.value
         if (regPass.test(str)) {
           this.hasPassword = true
@@ -117,7 +117,7 @@
         var nickname = this.$refs.conName.value
         var password = this.$refs.passtype.value
         if (this.hasPhone && this.hasValidation && this.hasNickname && this.hasPassword) {
-          axios.post('/api/register.html',
+          axios.post('/common/register.html',
             {
               phone: username,
               nickname: nickname,

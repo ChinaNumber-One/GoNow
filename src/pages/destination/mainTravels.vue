@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="title-box">
-      <h2 class="hottravel-title">热门游记<span class="hottravel-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+      <h2 class="hottravel-title">热门游记<router-link to="/travelsList" tag="span" class="hottravel-more">更多<i class="iconfont right-arr">&#xe610;</i></router-link></h2>
     </div>
     <div class="hottravel-info border-bottom" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in travels" :key="item.id">
-          <router-link :to="'/travelInfo/' + item.id" tag="div">
+          <router-link :to="'/travelsDetail/' + item.id" tag="div">
             <img :src="item.imgUrl" alt="" class="item-img">
             <p class="item-title">{{item.title}}</p>
             <div class="item-user">
@@ -86,6 +86,7 @@ export default {
     overflow: hidden;
     width: 100%;
     padding-left: .2rem;
+    height: 4.6rem;
   }
   .hottravel-info::before {
     border-color: #9e9e9e;

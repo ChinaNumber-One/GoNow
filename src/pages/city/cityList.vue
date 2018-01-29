@@ -13,7 +13,7 @@
   import BScroll from 'better-scroll'
   import { mapState, mapMutations } from 'vuex'
   export default {
-    props: ['cityList'],
+    props: ['cityList', 'router', 'type'],
     mounted () {
       this.scroll = new BScroll(this.$refs.scroller, {
         bounceTime: 300,
@@ -22,12 +22,24 @@
     },
     methods: {
       handleChooseCity (city) {
-        this.getCity(city)
         this.$nextTick(() => {
-          this.$router.push('/destination/' + city)
+          if (this.router === 'destination') {
+            this.getCity(city)
+            this.$router.push('/destination/' + city)
+          } else if (this.router === 'hotel') {
+            this.getCity(city)
+            this.$router.push('/hotel')
+          } else if (this.router === 'ticket') {
+            if (this.type === 'from') {
+              this.getStartPlace(city)
+            } else if (this.type === 'to') {
+              this.getEndPlace(city)
+            }
+            this.$router.push('/ticket')
+          }
         })
       },
-      ...mapMutations(['getCity'])
+      ...mapMutations(['getCity', 'getStartPlace', 'getEndPlace'])
     },
     computed: {
       ...mapState(['city'])

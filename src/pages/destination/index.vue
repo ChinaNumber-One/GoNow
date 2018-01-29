@@ -31,7 +31,7 @@
         views: [],
         travels: [],
         strategy: [],
-        adds: ''
+        adds: []
       }
     },
     computed: {
@@ -39,39 +39,37 @@
     },
     watch: {
       city () {
-        window.scrollTo(0, 0)
         this.getDestData()
       }
     },
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
-        axios.get('/api/place.html?city=' + this.city)
+        axios.get('/common/place.html?city=' + this.city)
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
       handleGetDataSucc (res) {
         res = res ? res.data : null
         if (res && res.data) {
-          res.data.headerInfo && (this.headerInfo = res.data.headerInfo)
-          res.data.adds && (this.adds = res.data.adds)
-          res.data.views && (this.views = res.data.views)
-          res.data.travels && (this.travels = res.data.travels)
-          res.data.strategy && (this.strategy = res.data.strategy)
+          this.headerInfo = res.data.headerInfo
+          this.adds = res.data.adds
+          this.views = res.data.views
+          this.travels = res.data.travels
+          this.strategy = res.data.strategy
         }
       },
       handleGetDataErr () {
         console.log('获取数据失败')
       },
       changeCity () {
-        if (!this.city) {
-          this.getCity(this.$route.params.city)
-        }
+        this.getCity(this.$route.params.city)
       }
     },
     created () {
       this.changeCity()
       this.getDestData()
+      window.scrollTo(0, 0)
     }
   }
 </script>

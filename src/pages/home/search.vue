@@ -1,20 +1,29 @@
 <template>
   <div class="search">
   	<div class="logo">
-     <img class="logo-img" src="static/img/logo.png"> 
+     <img class="logo-img" src="../../../static/img/logo.png"> 
     </div>
   	<div class="search-input">
       <i class="searchicon"></i>
-      <span class="searchtxt"> 搜索目的地/景点/酒店等</span>
+      <router-link to="/searchPage" class="searchtxt" tag="span"> 搜索目的地/景点/酒店等</router-link>
     </div>
-  	<router-link to="/message" tag="div" class="mes">
+  	<div class="mes" @click="goTomessage">
      <img class="mes-img" src="../../../static/img/message.png">  
-    </router-link>
+    </div>
   </div>
 </template>
 <script>
   export default {
-    name: 'search'
+    name: 'search',
+    methods: {
+      goTomessage () {
+        if (window.localStorage.isLogin) {
+          this.$router.push('/message')
+        } else {
+          this.$router.push('/login')
+        }
+      }
+    }
   }
 </script>
 <style scoped lang="stylus">

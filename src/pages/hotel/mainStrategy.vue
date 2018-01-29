@@ -6,7 +6,7 @@
     <div class="hottravel-info" ref="hotscroll">
       <ul class="hottravel-list">
         <li class="hottravel-item" v-for="item in strategy" :key="item.id">
-          <router-link :to="'/travelInfo/' + item.id" tag="div">
+          <div>
             <img :src="item.imgUrl" alt="" class="item-img">
             <p class="item-title">{{item.title}}</p>
             <div class="item-user">
@@ -15,7 +15,7 @@
                 <span class="reply mr1">{{item.collectCount}}</span>收藏
               </p>
             </div>
-          </router-link>  
+          </div>  
         </li>
       </ul>
     </div> 

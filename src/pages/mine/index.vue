@@ -32,7 +32,7 @@ export default {
   },
   data () {
     return {
-      userimg: '../../../static/img/userimg.png',
+      userimg: '',
       showInfo: false,
       nickname: '',
       fansNum: 0,
@@ -44,7 +44,7 @@ export default {
   methods: {
     getDateInfo () {
       if (window.localStorage.isLogin) {
-        axios.get('/api/mine.html?id=' + window.localStorage.userId)
+        axios.get('/common/mine.html?id=' + window.localStorage.userId)
             .then(this.handleGetDataSucc.bind(this))
             .catch(this.handleGetDataErr.bind(this))
         this.showInfo = true
@@ -53,11 +53,13 @@ export default {
     },
     handleGetDataSucc (res) {
       if (res.data) {
-        this.userimg = res.data.data.userimg
+        this.userimg = res.data.data.userimg || '../../../static/img/userdefault.png'
         this.nickname = res.data.data.nickname
         this.fansNum = res.data.data.fansNum
         this.attentionNum = res.data.data.attentionNum
       }
+      window.localStorage.userName = this.nickname
+      window.localStorage.userImg = this.userimg
     },
     handleGetDataErr () {
       alert('服务器发生错误！')

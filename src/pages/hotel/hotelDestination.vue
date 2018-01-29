@@ -14,12 +14,10 @@
     <div class="hotviews-info border-bottom" ref="hotscroll">
       <ul class="hotviews-list">
         <li class="hotviews-item" v-for="item in recommend" :key="item.id" @click="handlChangeCity(item.place)">
-          <router-link :to="'/destination/' + item.place" class="hotviews-item" tag="div">
-            <img v-lazy="item.imgUrl" alt="" class="item-img" >
-            <div class="city-box">
-              {{item.place}}
-            </div>
-          </router-link>
+          <img v-lazy="item.imgUrl" alt="" class="item-img" >
+          <div class="city-box">
+            {{item.place}}
+          </div>
         </li>
       </ul>
     </div> 
@@ -67,11 +65,12 @@ export default {
     methods: {
       tab (name, index) {
         this.num = index
-        axios.get('/api/groom.html?groom=' + name)
+        axios.get('/common/groom.html?groom=' + name)
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },
       handlChangeCity (city) {
+        this.$router.push('/hotel')
         this.getCity(city)
       },
       ...mapMutations(['getCity']),

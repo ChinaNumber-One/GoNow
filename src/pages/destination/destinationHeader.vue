@@ -21,13 +21,13 @@
         </router-link>
       </span>
       <span class="temp-num">
-        {{headerInfo.temperature}}
+        {{headerInfo.temperature}}°
         <i class="temp-icon"></i>
       </span>
-      <span class="more-img">
+      <!-- <span class="more-img">
         339万张图片
         <i class="iconfont right-arr">&#xe610;</i>
-      </span>
+      </span> -->
     </div>    
 
 	</div>

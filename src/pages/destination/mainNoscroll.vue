@@ -1,24 +1,24 @@
 <template>
   <div>
     <div class="title-box">
-      <h2 class="strategy-title">攻略<span class="strategy-more">更多<i class="iconfont right-arr">&#xe610;</i></span></h2>
+      <h2 class="strategy-title">攻略<router-link to="/strategyList" tag="span" class="strategy-more">更多<i class="iconfont right-arr">&#xe610;</i></router-link></h2>
     </div>
     <div class="strategy-info">
       <ul class="strategy-list">
-        <li class="strategy-item border-bottom" v-for="(item, index) in list" :key="item.id">
+        <router-link :to="/strategyDetail/ + item.id " tag="li" class="strategy-item border-bottom" v-for="(item, index) in strategy" :key="item.id">
           <div class="item-user">
-            <p class="item-name">云南小镇</p>
-            <p class="item-title">{{item.title}}</p>
+            <p class="item-name">{{item.title}}</p>
+            <p class="item-title">{{item.summary}}</p>
             <p class="item-comment">
               <span class="browse">{{item.viewCount}}</span>浏览·
               <span class="collect">{{item.collectCount}}</span>收藏
             </p>
           </div>
           <img v-lazy="item.imgUrl" alt="" class="item-img">
-        </li>
+        </router-link>
       </ul>
     </div>
-    <transition name="loading">  
+    <!-- <transition name="loading">  
       <div class="loadingBox" v-show="isLoading" ref="loadingBox">
         <img class="loadImg" src="../../../static/img/juhua.gif" alt="">
         <span ref="loadingstatus">正在加载……</span>
@@ -26,92 +26,97 @@
     </transition>
     <div class="toTop" v-show="toTopShow" ref="toTop" @click="totopClick">
       <span class="toTopicon"></span>
-    </div> 
+    </div> --> 
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
-  import { mapState } from 'vuex'
+  // import axios from 'axios'
+  // import { mapState, mapMutations } from 'vuex'
 export default {
     props: ['strategy'],
-    name: 'mainStrategy',
-    data () {
-      return {
-        a: 0,
-        pageNum: 1,
-        isLoading: false,
-        toTopShow: false,
-        loadstrategy: []
-      }
-    },
-    watch: {
-      list () {
-        this.isLoading = false
-      }
-    },
-    methods: {
-      getListInfo () {
-        axios.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
-          .then(this.handleGetDataSucc.bind(this))
-          .catch(this.handleGetDataError.bind(this))
-      },
-      handleGetDataSucc (res) {
-        res = res ? res.data : null
-        if (res && res.data && res.data.strategy) {
-          this.loadstrategy = this.loadstrategy.concat(res.data.strategy)
-          this.pageNum += 1
-        }
-      },
-      handleGetDataError () {
-        this.isLoading = true
-        this.$refs.loadingstatus.innerHtml = '已经加载全部~~'
-      },
-      bindScroll () {
-        this.proxyFn = this.handleScroll.bind(this)
-        window.addEventListener('scroll', this.proxyFn)
-      },
-      unbindScroll () {
-        window.removeEventListener('scroll', this.proxyFn)
-      },
-      handleScroll () {
-        const pageHeight = document.body.clientHeight
-        const screenHeight = window.screen.height
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        if (scrollTop >= pageHeight - screenHeight - 40 && !this.isLoading) {
-          this.getListInfo()
-          this.isLoading = true
-        } else if (scrollTop > screenHeight) {
-          this.toTopShow = true
-        } else if (scrollTop <= 10) {
-          this.toTopShow = false
-        }
-      },
-      totopClick () {
-        var timer = null
-        clearInterval(timer)
-        let scrollTop = document.documentElement.scrollTop
-        timer = setInterval(function () {
-          scrollTop = scrollTop - scrollTop / 10
-          window.scrollTo(0, scrollTop)
-          if (scrollTop <= 10) {
-            clearInterval(timer)
-          }
-        }, 10)
-      }
-    },
-    computed: {
-      ...mapState(['city']),
-      list () {
-        return this.strategy.concat(this.loadstrategy)
-      }
-    },
-    created () {
-      this.bindScroll()
-    },
-    destroyed () {
-      this.unbindScroll()
-    }
+    name: 'mainStrategy'
+    // data () {
+    //   return {
+    //     a: 0,
+    //     pageNum: 1,
+    //     isLoading: false,
+    //     toTopShow: false,
+    //     loadstrategy: [],
+    //     name: '攻略'
+    //   }
+    // },
+    // watch: {
+    //   list () {
+    //     this.isLoading = false
+    //   }
+    // },
+    // methods: {
+    //   getListInfo () {
+    //     axios.get('/static/loadStrategy.json?city=' + this.city + '&page=' + this.pageNum)
+    //       .then(this.handleGetDataSucc.bind(this))
+    //       .catch(this.handleGetDataError.bind(this))
+    //   },
+    //   handleGetDataSucc (res) {
+    //     res = res ? res.data : null
+    //     if (res && res.data && res.data.strategy) {
+    //       this.loadstrategy = this.loadstrategy.concat(res.data.strategy)
+    //       this.pageNum += 1
+    //     }
+    //   },
+    //   handleGetDataError () {
+    //     this.isLoading = true
+    //     this.$refs.loadingstatus.innerHtml = '已经加载全部~~'
+    //   },
+    //   bindScroll () {
+    //     this.proxyFn = this.handleScroll.bind(this)
+    //     window.addEventListener('scroll', this.proxyFn)
+    //   },
+    //   unbindScroll () {
+    //     window.removeEventListener('scroll', this.proxyFn)
+    //   },
+    //   handleScroll () {
+    //     const pageHeight = document.body.clientHeight
+    //     const screenHeight = window.screen.height
+    //     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+    //     if (scrollTop >= pageHeight - screenHeight - 40 && !this.isLoading) {
+    //       this.getListInfo()
+    //       this.isLoading = true
+    //     } else if (scrollTop > screenHeight) {
+    //       this.toTopShow = true
+    //     } else if (scrollTop <= 10) {
+    //       this.toTopShow = false
+    //     }
+    //   },
+    //   totopClick () {
+    //     var timer = null
+    //     clearInterval(timer)
+    //     let scrollTop = document.documentElement.scrollTop
+    //     timer = setInterval(function () {
+    //       scrollTop = scrollTop - scrollTop / 10
+    //       window.scrollTo(0, scrollTop)
+    //       if (scrollTop < 10) {
+    //         clearInterval(timer)
+    //       }
+    //     }, 10)
+    //   },
+    //   changeTitle () {
+    //     this.getTitle(this.name)
+    //   },
+    //   ...mapMutations(['getTitle'])
+    // },
+    // computed: {
+    //   ...mapState(['city', 'title']),
+    //   list () {
+    //     return this.strategy.concat(this.loadstrategy)
+    //   }
+    // },
+    // created () {
+    //   this.bindScroll()
+    // },
+    // destroyed () {
+    //   this.unbindScroll()
+    // }
 }
 </script>
 
@@ -165,6 +170,7 @@ export default {
   .strategy-info {
     overflow: hidden;
     width: 100%;
+    margin-bottom: 1rem;
   }
   .strategy-list {
     width: 100%;

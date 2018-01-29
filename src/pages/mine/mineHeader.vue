@@ -1,13 +1,23 @@
 <template>
   <header class="header">
     <router-link to="/setting" tag="span" class="icon setting"></router-link>
-    <router-link to="/message" tag="span" class="icon message">
-    </router-link>
+    <span class="icon message" @click="goTomessage">
+    </span>
   </header>
 </template>
 
 <script>
-	export default {}
+export default {
+  methods: {
+    goTomessage () {
+      if (window.localStorage.isLogin) {
+        this.$router.push('/message')
+      } else {
+        this.$router.push('/login')
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>

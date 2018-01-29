@@ -96,6 +96,7 @@ export default {
     overflow: hidden;
     width: 100%;
     padding-left: .2rem;
+    height: 3.2rem;
   }
   .hotviews-info::before {
     border-color: #9e9e9e;

@@ -38,7 +38,7 @@
       ...mapMutations(['getCity']),
       ...mapMutations(['getRecommend']),
       getDestData () {
-        axios.get('/api/hotel.html?city=' + this.city)
+        axios.get('/common/hotel.html?city=' + this.city)
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
       },

@@ -2,32 +2,32 @@
   <div class="selection">
   	<h2 class="title">
   		<span class="tipL">亲子旅行</span>
-  		<span class="tipR">更多  ></span>
+  		<router-link to="/travelsList" tag="span" class="tipR">更多  ></router-link>
   	</h2>
   	<div class="selBox" ref="wrapper">
   	  <ul class="selList">
-  	  	<li class="selCont" 
+  	  	<router-link tag="li" :to="/travelsDetail/ + item.id " class="selCont" 
   	  		v-for="item of babytripInfo"
   	  		:key="item.id">
           <div class="sel-date">
-            <span class="date-time">{{item.date}}</span>
+            <span class="date-time">{{item.createdDate.split('-')[2]}}</span>
             <span class="date-date">
-              <i class="date-year">{{item.year}}</i>
-              <i class="date-year">{{item.month}}</i>
+              <i class="date-year">{{item.createdDate.split('-')[0]}}</i>
+              <i class="date-month">{{item.createdDate.split('-')[1]}}</i>
             </span>
           </div>
   	  	  <img class="sel-img" v-lazy="item.imgUrl">
   	  	  <p class="sel-desc" v-text="item.title"></p>
   	  	  <div class="sel-res">
   	  	  	<div class="res-left">
-  	  	  	  <img src="https://n3-q.mafengwo.net/s10/M00/AE/EF/wKgBZ1lkcRiAXs8iAALY5sXyY7s27.jpeg?imageMogr2%2Fthumbnail%2F%2148x48r%2Fgravity%2FCenter%2Fcrop%2F%2148x48%2Fquality%2F90">{{item.nickname || user}}<span>在{{item.place}}</span>
+  	  	  	  <img :src="item.userImg" class="item-img">{{item.nickname || user}}在<span>{{item.place}}</span>
   	  	  	</div>
   	  	  	<div class="res-right">
   	  	  	  <span class="mr1">{{item.browseNum}}</span>浏览·
   	  	  	  <span class="mar1">{{item.reply}}</span>回复
   	  	  	</div>
   	  	  </div>
-  	  	</li>
+  	  	</router-link>
   	  </ul>
   	</div>
   </div>
@@ -148,15 +148,20 @@
             line-height:.47rem
             .res-left
               width:3.5rem
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
+              overflow: hidden
+              white-space: nowrap
+              text-overflow: ellipsis
+              font-weight:900
+              color:#999
               img
                 width:.5rem
                 height:.5rem
                 border-radius:50%
+                margin-right:.1rem
               span
                 font-weight:600
+                color: #ffbf1c
+                margin-left:.1rem
             .res-right
               span
                 font-weight:600

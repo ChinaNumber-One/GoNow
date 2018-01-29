@@ -18,7 +18,6 @@
   	  <button @click="handleLogin" class="login-btn">登录</button>
     </div>
     <third-path v-show="emailFlag"></third-path>
-    <!-- <div class="blank"></div> -->
     
     <router-link to="/register" tag="div" class="reg-now">立即注册</router-link>
   </div>
@@ -71,7 +70,7 @@ export default {
     handleLogin () {
       if (this.emailFlag) {
         if (this.acount && this.password) {
-          axios.post('/api/login.html',
+          axios.get('/common/login.html',
             {
               phone: this.acount,
               pwd: this.password
@@ -83,7 +82,7 @@ export default {
       }
       if (this.phoneFlag) {
         if (this.phone && this.mes) {
-          axios.post('/api/login.html',
+          axios.post('/common/login.html',
             {
               phone: this.phone,
               code: this.mes
@@ -99,9 +98,9 @@ export default {
         window.localStorage.isLogin = true
         window.localStorage.userId = res.data.userId
         alert('登录成功！')
-        this.$router.push({path: '/mine'})
+        this.$router.go(-1)
       } else {
-        alert('账号或密码错误')
+        alert(res.data.error)
       }
     },
     handleLoginErr () {
@@ -130,6 +129,7 @@ export default {
         font-size:.32rem
         width:2.4rem
         margin:0 auto
+        text-align:center
     .login
       min-height:2.87rem
       .way

@@ -26,7 +26,7 @@ export default {
       this.$emit('getMes', this.$refs.mes.value)
     },
     getcode () {
-      axios.post('/api/send_login_code.html',
+      axios.post('/common/send_login_code.html',
         {
           phone: this.$refs.phone.value
         }).then(this.handleIdentifyingSucc.bind(this))

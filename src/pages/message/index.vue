@@ -39,11 +39,13 @@ export default {
     },
     getSystemData () {
       axios.get('/static/sysmessage.json')
-          .then(this.handleGetSysSucc.bind(this), this.handleGetSysError.bind(this))
+          .then(this.handleGetSysSucc.bind(this))
+          .catch(this.handleGetSysError.bind(this))
     },
     getPrivateDate () {
       axios.get('/static/primessage.json')
-          .then(this.handleGetPriSucc.bind(this), this.handleGetPriError.bind(this))
+          .then(this.handleGetPriSucc.bind(this))
+          .catch(this.handleGetPriError.bind(this))
     },
     handleGetSysSucc (res) {
       this.notice = res.data.data ? res.data.data.system : '暂无消息'

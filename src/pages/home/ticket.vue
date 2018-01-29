@@ -164,25 +164,28 @@ export default {
 		width:94%
 		border-bottom:1px solid #ccc
 		margin:0 auto
-		img
-			height:.3rem
-			width:.4rem
-		.startPlace
+		.from
+			width:auto
 			text-align:center
 			font-size:.35rem
+			margin-left:.5rem
 			font-weight:600
 			border:none
-		.endPlace
+		.to
+			width:auto
 			text-align:center
 			font-size:.35rem
+			margin-right:.5rem
 			font-weight:600
 			border:none
 	.date-pick
-		width:100%
-		height:1rem
-		border-bottom:1px solid red
-    text-align:center
+		width:94%
+		margin:0 auto
+		height:1.35rem
+		line-height:1.35rem
+		border-bottom:1px solid #ccc
 	.search
+		height:4.5rem
 		background:#fff
 		.search-btn
 			width:6.7rem
@@ -219,5 +222,5 @@ export default {
     border-bottom:.1rem solid #ffbf1c;
     font-weight: 600;
   }
-      
+     
 </style>

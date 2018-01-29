@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-export default {
-  props: ['iconsInfo'],
-  computed: {
-    ...mapState(['city'])
+  import { mapState } from 'vuex'
+  export default {
+    props: ['iconsInfo'],
+    computed: {
+      ...mapState(['city'])
+    }
   }
-}
 </script>
 
 <style scoped>

@@ -19,6 +19,7 @@ import SearchPage from '@/pages/home/searchPage/index.vue'
 import GetPoients from '@/pages/setting/getPoients.vue'
 import GoFeedback from '@/pages/setting/goFeedback.vue'
 import ChangeInfo from '@/pages/setting/changeInfo.vue'
+
 Vue.use(Router)
 
 export default new Router({

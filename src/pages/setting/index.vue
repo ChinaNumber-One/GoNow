@@ -27,7 +27,7 @@
     <div class="blank">
     	
     </div>
-		<div class="exit" @click="exitUser">退出当前账号</div>
+		<div class="exit" @click="exitUser" plain>退出当前账号</div>
 	</div>
 </template>
 
@@ -35,8 +35,27 @@
 export default {
   methods: {
     exitUser () {
-      window.localStorage.clear()
-      this.$router.push('/mine')
+      if (window.localStorage.isLogin) {
+        window.localStorage.clear()
+        this.$message({
+          message: '退出成功！',
+          duration: 1000,
+          center: true,
+          onClose: () => {
+            this.$router.push('/mine')
+          }
+        })
+      } else {
+        this.$message({
+          message: '请先登录！',
+          duration: 1000,
+          type: 'warning',
+          center: true,
+          onClose: () => {
+            this.$router.push('/mine')
+          }
+        })
+      }
     },
     handleBack () {
       this.$router.go(-1)
@@ -48,12 +67,14 @@ export default {
       this.$router.push('/goFeedback')
     },
     changeInfo () {
-      if (window.localStorage.isLogin === true) {
+      console.log(window.localStorage.isLogin)
+      if (window.localStorage.isLogin) {
         this.$router.push('/changeInfo')
       } else {
         this.$message({
           message: '请先登录！',
-          duration: 0,
+          duration: 1000,
+          type: 'warning',
           center: true,
           onClose: () => {
             this.$router.push('/mine')
@@ -126,10 +147,4 @@ export default {
 	  text-align:center;
 	  font-size:.38rem;
  	}
-  .el-message {
-    top:3rem!important;
-  }
-  .el-message__content {
-    color: #000;
-  }
 </style>

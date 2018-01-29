@@ -55,13 +55,14 @@ export default {
     },
     handleSucc (res) {
       if (res.data.result) {
-        this.$notify({
-          title: '提交成功',
-          type: 'success',
+        this.$message({
+          message: '提交成功！',
           duration: 1000,
-          onClose: function () {
+          type: 'success',
+          center: true,
+          onClose: () => {
             this.$router.push('/mine')
-          }.bind(this)
+          }
         })
       }
     },

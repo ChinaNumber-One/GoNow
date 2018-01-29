@@ -19,7 +19,11 @@ export default {
       if (regPhone.test(this.$refs.phone.value)) {
         this.$emit('getPhone', this.$refs.phone.value)
       } else {
-        alert('手机号格式错误！')
+        this.$message.error({
+          message: '手机号码格式错误！',
+          duration: 1000,
+          center: true
+        })
       }
     },
     meschange () {
@@ -34,11 +38,20 @@ export default {
     },
     handleIdentifyingSucc (res) {
       if (res.data.result) {
-        alert('短信已发送至您的手机')
+        this.$message({
+          message: '账号或密码为空！',
+          duration: 1000,
+          center: true,
+          type: 'success'
+        })
       }
     },
     handleIdentifyingErr () {
-      alert('服务器发生错误')
+      this.$message.error({
+        message: '网络或服务器错误！',
+        duration: 1000,
+        center: true
+      })
     }
   }
 }

@@ -80,36 +80,47 @@ export default {
       return isJPG && isLt2M
     },
     onSubmit () {
-      console.log(this.form.name)
-      console.log(this.form.date1.toLocaleDateString())
-      console.log(this.form.sex)
-      console.log(this.form.desc)
-      axios.get('/common/userInfo.html',
-        {
-          id: window.localStorage.userId,
-          name: this.form.name,
-          birth: this.form.date1.toLocaleDateString(),
-          sex: this.form.sex,
-          desc: this.form.desc
-        }).then(this.handleLoginSucc.bind(this))
-      .catch(this.handleLoginErr.bind(this))
+      if (this.form.name && this.form.date1.toLocaleDateString() && this.form.sex && this.form.desc) {
+        axios.get('/common/userInfo.html',
+          {
+            id: window.localStorage.userId,
+            name: this.form.name,
+            birth: this.form.date1.toLocaleDateString(),
+            sex: this.form.sex,
+            desc: this.form.desc
+          }).then(this.handleLoginSucc.bind(this))
+        .catch(this.handleLoginErr.bind(this))
+        console.log(this.form.name)
+        console.log(this.form.date1.toLocaleDateString())
+        console.log(this.form.sex)
+        console.log(this.form.desc)
+      } else {
+        this.$message({
+          message: '请填写完整！',
+          type: 'warning',
+          center: true,
+          duration: 1000
+        })
+      }
     },
     handleLoginSucc (res) {
       if (res.data.result) {
-        this.$notify({
-          title: '修改成功',
-          type: 'success',
+        this.$message({
+          message: '保存成功！',
           duration: 1000,
-          onClose: function () {
+          type: 'success',
+          center: true,
+          onClose: () => {
             this.$router.push('/mine')
-          }.bind(this)
+          }
         })
       }
     },
     handleLoginErr () {
-      this.$notify.error({
-        duration: 1000,
-        title: '发送失败'
+      this.$message.error({
+        message: '网路错误！',
+        duration: 3000,
+        center: true
       })
     }
   }

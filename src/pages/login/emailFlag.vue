@@ -29,7 +29,11 @@ export default {
       if (regPhone.test(this.$refs.acount.value)) {
         this.$emit('getUser', this.$refs.acount.value)
       } else {
-        alert('手机号格式错误！')
+        this.$message.error({
+          message: '手机号码格式错误！',
+          duration: 1000,
+          center: true
+        })
       }
     },
     passwordchange () {

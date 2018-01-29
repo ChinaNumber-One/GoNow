@@ -15,7 +15,7 @@
         <email-flag v-show="emailFlag" @getUser="getUserSucc" @getpassword="getpasswordSucc"></email-flag>
         <phone-flag v-show="phoneFlag" @getPhone="getPhoneSucc" @getMes="getMesSucc"></phone-flag>
   	  </div>
-  	  <button @click="handleLogin" class="login-btn">登录</button>
+  	  <button @click="handleLogin" class="login-btn" plain>登录</button>
     </div>
     <third-path v-show="emailFlag"></third-path>
     
@@ -77,19 +77,27 @@ export default {
             }).then(this.handleLoginSucc.bind(this))
           .catch(this.handleLoginErr.bind(this))
         } else {
-          alert('账号或密码为空')
+          this.$message.error({
+            message: '账号或密码为空！',
+            duration: 1000,
+            center: true
+          })
         }
       }
       if (this.phoneFlag) {
         if (this.phone && this.mes) {
-          axios.post('/common/login.html',
+          axios.get('/common/login.html',
             {
               phone: this.phone,
               code: this.mes
             }).then(this.handleLoginSucc.bind(this))
             .catch(this.handleLoginErr.bind(this))
         } else {
-          alert('账号或验证码为空')
+          this.$message.error({
+            message: '请填写验证码',
+            duration: 1000,
+            center: true
+          })
         }
       }
     },
@@ -97,14 +105,28 @@ export default {
       if (res.data.result) {
         window.localStorage.isLogin = true
         window.localStorage.userId = res.data.userId
-        alert('登录成功！')
+        this.$message({
+          message: '登录成功！',
+          duration: 1000,
+          center: true,
+          type: 'success'
+        })
         this.$router.go(-1)
       } else {
-        alert(res.data.error)
+        this.$message({
+          message: res.data.error,
+          duration: 1000,
+          center: true,
+          type: 'warning'
+        })
       }
     },
     handleLoginErr () {
-      console.log('服务器错误！')
+      this.$message.error({
+        message: '网络或服务器错误！',
+        duration: 1000,
+        center: true
+      })
     }
   }
 }

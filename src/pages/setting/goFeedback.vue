@@ -58,20 +58,22 @@ export default {
     },
     handleSucc (res) {
       if (res.data.result) {
-        this.$notify({
-          title: '发送成功',
-          type: 'success',
+        this.$message({
+          message: '提交成功！',
           duration: 1000,
-          onClose: function () {
+          type: 'success',
+          center: true,
+          onClose: () => {
             this.$router.push('/mine')
-          }.bind(this)
+          }
         })
       }
     },
     handleErr () {
-      this.$notify.error({
-        duration: 1000,
-        title: '发送失败'
+      this.$message.error({
+        message: '网路错误！',
+        duration: 3000,
+        center: true
       })
     }
   }

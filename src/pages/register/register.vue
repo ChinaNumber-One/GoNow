@@ -10,8 +10,8 @@
     </div>
     <div class="mes">
       <span class="text">短信验证码</span>
-      <input type="text" ref="vali" @blur="validationConfirm">
-      <span @click="getValidation" class="validation">获取验证码</span>
+      <input type="text" ref="vali" @blur="validationConfirm" plain>
+      <span @click="getValidation" class="validation" plain>获取验证码</span>
     </div>
     <div class="nickname">
       <span>昵称</span>
@@ -67,22 +67,24 @@
             }).then(this.handleIdentifyingSucc.bind(this))
               .catch(this.handleIdentifyingErr.bind(this))
         } else {
-          this.tipsBox = true
-          this.tips = '请输入正确的手机格式'
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message({
+            message: '手机号码格式错误！',
+            duration: 1000,
+            type: 'warning',
+            center: true
+          })
         }
       },
       validationConfirm () {
         if (this.$refs.vali.value && this.$refs.vali.value) {
           this.hasValidation = true
         } else {
-          this.tipsBox = true
-          this.tips = '请填写验证码'
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message({
+            message: '请填写验证码！',
+            duration: 1000,
+            type: 'warning',
+            center: true
+          })
         }
       },
       nameConfirm () {
@@ -91,11 +93,12 @@
         if (regName.test(str)) {
           this.hasNickname = true
         } else {
-          this.tipsBox = true
-          this.tips = '昵称至少3-15位'
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message({
+            message: '昵称为3-15位！',
+            duration: 1000,
+            type: 'warning',
+            center: true
+          })
         }
       },
       passConfirm () {
@@ -104,11 +107,12 @@
         if (regPass.test(str)) {
           this.hasPassword = true
         } else {
-          this.tipsBox = true
-          this.tips = '密码至少6-15位'
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message({
+            message: '密码为6-15位数字或字母',
+            duration: 1000,
+            type: 'warning',
+            center: true
+          })
         }
       },
       handleComplete () {
@@ -126,11 +130,11 @@
             }).then(this.handleRegisterSucc.bind(this))
           .catch(this.handleRegisterErr.bind(this))
         } else {
-          this.tipsBox = true
-          this.tips = '填写有误，请核实！'
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message.error({
+            message: '请填写完整！',
+            duration: 2000,
+            center: true
+          })
         }
       },
       handleRegisterSucc (res) {
@@ -146,7 +150,11 @@
         }
       },
       handleRegisterErr () {
-        alert('服务器错误！')
+        this.$message.error({
+          message: '网络或服务器发生错误！',
+          duration: 2000,
+          center: true
+        })
       },
       handleIdentifyingSucc (res) {
         if (res.data.result) {
@@ -160,7 +168,11 @@
         }
       },
       handleIdentifyingErr () {
-        alert('服务器错误！')
+        this.$message.error({
+          message: '网络或服务器发生错误！',
+          duration: 2000,
+          center: true
+        })
       }
     }
   }

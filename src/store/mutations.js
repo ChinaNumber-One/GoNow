@@ -10,5 +10,8 @@ export default {
   },
   getEndPlace (state, endPlace) {
     state.endPlace = endPlace
+  },
+  getTrains (state, trains) {
+    state.trains = trains
   }
 }

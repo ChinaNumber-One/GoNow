@@ -78,6 +78,7 @@ export default {
     background: #fe5a4b;
     padding-bottom: .1rem;
     box-sizing:border-box;
+    min-height: 2.78rem;
     padding: 0.2rem .4rem 1.4rem .4rem;
   }
   .swiper-list {

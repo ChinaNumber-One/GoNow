@@ -28,7 +28,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  props: ['userimg', 'showInfo', 'fansNum', 'attentionNum', 'nickname', 'word'],
+  props: ['userimg', 'showInfo', 'fansNum', 'attentionNum', 'nickname', 'word', 'desc'],
   computed: {
     ...mapState(['city'])
   }
@@ -61,7 +61,9 @@ export default {
   }
   .userimg {
     height: 1.4rem;
+    width: 1.4rem;
     margin: .6rem;
+    border-radius: 50%;
   }
   .login-txt {
     flex: 1;

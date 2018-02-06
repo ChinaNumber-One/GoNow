@@ -11,7 +11,7 @@
     <div class="mes">
       <span class="text">短信验证码</span>
       <input type="text" ref="vali" @blur="validationConfirm" plain>
-      <span @click="getValidation" class="validation" plain>获取验证码</span>
+      <span @click="getValidation" ref='getCode' class="validation" plain>{{getCode}}</span>
     </div>
     <div class="nickname">
       <span>昵称</span>
@@ -40,7 +40,8 @@
         hasPhone: false,
         hasValidation: false,
         hasNickname: false,
-        hasPassword: true
+        hasPassword: true,
+        getCode: '获取验证码'
       }
     },
     methods: {
@@ -59,7 +60,6 @@
         const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
         const str = this.$refs.conPhone.value
         if (regPhone.test(str)) {
-          console.log(str)
           this.tipsBox = false
           axios.post('/common/send_register_code.html',
             {
@@ -139,14 +139,21 @@
       },
       handleRegisterSucc (res) {
         if (res.data.result) {
-          alert('注册成功！')
-          this.$router.push({path: '/login'})
+          this.$message({
+            message: '注册成功!',
+            duration: 1000,
+            type: 'success',
+            center: true,
+            onClose: () => {
+              this.$router.push('/login')
+            }
+          })
         } else {
-          this.tipsBox = true
-          this.tips = res.data.error
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message.error({
+            message: '网络或服务器发生错误！',
+            duration: 2000,
+            center: true
+          })
         }
       },
       handleRegisterErr () {
@@ -160,11 +167,11 @@
         if (res.data.result) {
           this.hasPhone = true
         } else {
-          this.tipsBox = true
-          this.tips = res.data.error
-          setTimeout(() => {
-            this.tipsBox = false
-          }, 2000)
+          this.$message.error({
+            message: '网络或服务器发生错误！',
+            duration: 2000,
+            center: true
+          })
         }
       },
       handleIdentifyingErr () {
@@ -240,6 +247,8 @@
       line-height:.6rem
       text-align:center
       background:orange
+      border-radius: .2rem
+      color:#000
   .nickname
     display:flex
     flex-direction:row

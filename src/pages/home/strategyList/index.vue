@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getDataInfo () {
-      axios.get('/common/strategyList.html')
+      axios.get('/strategy/list.html')
         .then(this.handleGetDataSucc.bind(this))
         .catch(this.handleGetDataErr.bind(this))
     },

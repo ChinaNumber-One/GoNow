@@ -66,6 +66,7 @@ export default {
     padding-bottom: .1rem;
     box-sizing:border-box;
     padding: 0.2rem .4rem 1.4rem .4rem;
+    min-height: 2.78rem;
   }
   .swiper-list {
     margin-right:.4rem;

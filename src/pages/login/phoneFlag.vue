@@ -39,10 +39,16 @@ export default {
     handleIdentifyingSucc (res) {
       if (res.data.result) {
         this.$message({
-          message: '账号或密码为空！',
+          message: '验证码已发送成功！',
           duration: 1000,
           center: true,
           type: 'success'
+        })
+      } else {
+        this.$message.error({
+          message: res.data.error,
+          duration: 1000,
+          center: true
         })
       }
     },
@@ -91,4 +97,6 @@ export default {
       margin-top:.2rem
       background:#feb82c
       border:none
+      border-radius: .2rem
+      text-align: center
 </style>

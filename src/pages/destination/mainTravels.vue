@@ -10,13 +10,13 @@
             <img :src="item.imgUrl" alt="" class="item-img">
             <p class="item-title">{{item.title}}</p>
             <div class="item-user">
-              <div>
+              <div class="userinfo">
                 <img v-lazy="item.userImg" alt="" class="item-userimg">
-                <span class="mr1">{{item.nickname}}</span>
+                <span class="mr1 userName">{{item.nickname}}</span>
               </div>
               <p class="item-comment">  
-                <span class="browse mr1">{{item.browseNum}}</span>浏览·
-                <span class="reply mr1">{{item.reply}}</span>评论
+                <span class="browse mr1"><i class="nums">{{item.browseNum}}</i><i>浏览·</i></span>
+                <span class="reply mr1"><i class="nums">{{item.reply}}</i><i>评论</i></span>
               </p>
             </div>
           </router-link>  
@@ -130,10 +130,39 @@ export default {
     border-radius: 50%;
   }
   .browse,.reply {
-    font-weight: 900;
+    display: inline-block;
+    line-height: .26rem;
+    text-align: right;
+    display: flex;
   }
   .item-comment {
     line-height: .4rem;
     font-size: .18rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .userinfo {
+    display: flex;
+    align-items: center;
+  }
+  .userName {
+    display: inline-block;
+    width: .8rem;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: .24rem;
+    line-height: .4rem;
+  }
+  .nums {
+    display: inline-block;
+    width: .7rem;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 600;
   }
 </style>

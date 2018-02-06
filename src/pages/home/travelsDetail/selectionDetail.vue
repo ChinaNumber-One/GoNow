@@ -58,7 +58,7 @@ export default {
       }
     },
     getDataInfo () {
-      axios.get('/common/visitget.html?id=' + this.$route.params.id)
+      axios.get('/visit/get.html?id=' + this.$route.params.id)
           .then(this.handleGetVisitSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
     },

@@ -61,7 +61,7 @@ export default {
       }
     },
     getDataInfo () {
-      axios.get('/common/strategyget.html?id=' + this.$route.params.id)
+      axios.get('/strategy/get.html?id=' + this.$route.params.id)
           .then(this.handleGetStrSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))
     },

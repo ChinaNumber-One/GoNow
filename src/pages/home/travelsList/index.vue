@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getDataInfo () {
-      axios.get('/common/visitlist.html')
+      axios.get('/visit/list.html')
         .then(this.handleGetDataSucc.bind(this))
         .catch(this.handleGetDataErr.bind(this))
     },

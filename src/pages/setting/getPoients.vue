@@ -47,9 +47,11 @@ export default {
       this.$router.push('/goFeedback')
     },
     submit () {
-      axios.get('/common/getPoints.html',
+      axios.get('/score/add.html',
         {
-          points: this.points
+          params: {
+            point: this.points
+          }
         }).then(this.handleSucc.bind(this))
           .catch(this.handleErr.bind(this))
     },
@@ -102,7 +104,6 @@ export default {
 	  width:2.4rem;
 	  margin:0 auto;
 	  text-align:center;
-	  font-size:.38rem;
  	}
  	.block {
  		flex: 1;

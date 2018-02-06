@@ -17,7 +17,7 @@
   	  </div>
   	  <button @click="handleLogin" class="login-btn" plain>登录</button>
     </div>
-    <third-path v-show="emailFlag"></third-path>
+    <!-- <third-path v-show="emailFlag"></third-path> -->
     
     <router-link to="/register" tag="div" class="reg-now">立即注册</router-link>
   </div>
@@ -70,10 +70,13 @@ export default {
     handleLogin () {
       if (this.emailFlag) {
         if (this.acount && this.password) {
-          axios.get('/common/login.html',
+          axios.post('/common/login.html',
             {
               phone: this.acount,
-              pwd: this.password
+              pwd: this.password,
+              ip: window.window.localStorage.ip,
+              city: window.localStorage.city,
+              province: window.localStorage.province
             }).then(this.handleLoginSucc.bind(this))
           .catch(this.handleLoginErr.bind(this))
         } else {
@@ -86,10 +89,13 @@ export default {
       }
       if (this.phoneFlag) {
         if (this.phone && this.mes) {
-          axios.get('/common/login.html',
+          axios.post('/common/login.html',
             {
               phone: this.phone,
-              code: this.mes
+              code: this.mes,
+              ip: window.window.localStorage.ip,
+              city: window.localStorage.city,
+              province: window.localStorage.province
             }).then(this.handleLoginSucc.bind(this))
             .catch(this.handleLoginErr.bind(this))
         } else {
@@ -109,9 +115,11 @@ export default {
           message: '登录成功！',
           duration: 1000,
           center: true,
-          type: 'success'
+          type: 'success',
+          onClose: () => {
+            this.$router.push('/mine')
+          }
         })
-        this.$router.go(-1)
       } else {
         this.$message({
           message: res.data.error,

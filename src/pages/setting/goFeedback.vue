@@ -14,13 +14,13 @@
 		  :maxlength = '200'>
 		</el-input>
 		<p class="yourContact">留下您的联系方式:</p>
-		<el-input placeholder="请输入内容（必填）" v-model="phone" class="contact">
+		<el-input placeholder="请输入内容（必填）" v-model="phone" class="contact" :maxlength='11' @blur="isPhone">
 	    <template slot="prepend">手机</template>
 	  </el-input>
-	  <el-input placeholder="请输入内容" v-model="wechat" class="contact">
+	  <el-input placeholder="请输入内容" v-model="wechat" class="contact" :maxlength='20'>
 	    <template slot="prepend">微信</template>
 	  </el-input>
-	  <el-input placeholder="请输入内容" v-model="QQ" class="contact">
+	  <el-input placeholder="请输入内容" v-model="QQ" class="contact" :maxlength='11'>
 	    <template slot="prepend">企鹅</template>
 	  </el-input>
 	</div>
@@ -42,14 +42,29 @@ export default {
     handleBack () {
       this.$router.go(-1)
     },
+    isPhone () {
+      const regPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/
+      if (!regPhone.test(this.phone)) {
+        this.$message({
+          message: '手机号码格式错误！',
+          duration: 3000,
+          type: 'warning',
+          center: true
+        })
+      } else {
+        this.submitSucc = true
+      }
+    },
     submitInfo () {
-      if (this.textarea && this.phone) {
-        axios.get('/common/feedback.html',
+      if (this.textarea && this.submitSucc) {
+        axios.get('/tickling/add.html',
           {
-            text: this.textarea,
-            phone: this.phone,
-            QQ: this.QQ || null,
-            wechat: this.wechat || null
+            params: {
+              text: this.textarea,
+              phone: this.phone,
+              qq: this.QQ || null,
+              wechat: this.wechat || null
+            }
           }).then(this.handleSucc.bind(this))
             .catch(this.handleErr.bind(this))
       } else {

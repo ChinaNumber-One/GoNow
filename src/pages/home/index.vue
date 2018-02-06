@@ -18,6 +18,7 @@
   </div>
 </template>
 <script>
+  import { mapState, mapMutations } from 'vuex'
   import axios from 'axios'
   import Search from './search'
   import commonFooter from '../../components/common/commonFooter'
@@ -44,7 +45,8 @@
       getRandBG () {
         const maxIndex = this.bannerInfo.length - 1
         return Math.round(Math.random() * maxIndex)
-      }
+      },
+      ...mapState(['city'])
     },
     methods: {
       getIndexData () {
@@ -64,7 +66,8 @@
       },
       handleGetDataErr () {
         console.log('获取数据失败')
-      }
+      },
+      ...mapMutations(['getCity'])
     },
     components: {
       Search,
@@ -78,6 +81,7 @@
     created () {
       window.scrollTo(0, 0)
       this.getIndexData()
+      this.getCity(window.localStorage.city || '北京')
     }
   }
 </script>

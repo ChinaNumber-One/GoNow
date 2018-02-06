@@ -46,7 +46,7 @@ export default {
   watch: {
     message () {
       if (this.message !== '') {
-        axios.get('/common/searchget.html?search=' + this.message)
+        axios.get('/search/get.html?search=' + this.message)
         .then(this.handleGetDataSucc.bind(this))
         .catch(this.handleGetDataErr.bind(this))
       } else {

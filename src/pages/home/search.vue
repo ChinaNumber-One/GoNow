@@ -20,7 +20,15 @@
         if (window.localStorage.isLogin) {
           this.$router.push('/message')
         } else {
-          this.$router.push('/login')
+          this.$message({
+            message: '请先登录！',
+            duration: 1000,
+            type: 'warning',
+            center: true,
+            onClose: () => {
+              this.$router.push('/mine')
+            }
+          })
         }
       }
     }

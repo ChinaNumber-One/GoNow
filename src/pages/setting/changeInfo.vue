@@ -7,20 +7,16 @@
     </div>
     <div class="content">
       <div class="header-info">
-        <el-upload
-          class="avatar-uploader"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :show-file-list="false"
-          :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          <div class="imgPub">
+            <img :src="imageUrl" alt="" class="userimg">
+            <input class="file" ref="file" @change="uploading($event)" type="file" accept="image/*">
+          </div>
           <p class="changeTxt">
             <span>
               修改头像
             </span>
           </p>
-        </el-upload>
+        
       </div>
       <div class="content-info">
         <el-form ref="form" :model="form" label-width="1rem">
@@ -53,6 +49,9 @@ export default {
   data () {
     return {
       imageUrl: window.localStorage.userImg,
+      pic: '',
+      files: [],
+      file: '',
       form: {
         name: '',
         date1: '',
@@ -65,35 +64,42 @@ export default {
     handleBack () {
       this.$router.go(-1)
     },
-    handleAvatarSuccess (res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    },
-    beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
+    uploading (event) {
+      this.file = event.target.files[0]
+      var windowURL = window.URL || window.webkitURL
+      this.file = event.target.files[0]
+      this.imageUrl = windowURL.createObjectURL(event.target.files[0])
     },
     onSubmit () {
-      if (this.form.name && this.form.date1.toLocaleDateString() && this.form.sex && this.form.desc) {
-        axios.get('/common/userInfo.html',
-          {
-            id: window.localStorage.userId,
-            name: this.form.name,
-            birth: this.form.date1.toLocaleDateString(),
-            sex: this.form.sex,
-            desc: this.form.desc
-          }).then(this.handleLoginSucc.bind(this))
+      let day = ''
+      if (typeof this.form.date1 === 'string') {
+        day = this.form.date1
+      } else {
+        const birth = this.form.date1.toLocaleDateString().split('/')
+        if (birth[1] < 10) {
+          birth[1] = '0' + birth[1]
+        }
+        if (birth[2] < 10) {
+          birth[2] = '0' + birth[2]
+        }
+        day = birth.join('-')
+      }
+      if (this.form.name && day && this.form.sex && this.form.desc) {
+        console.log(day)
+        let config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+        let formdata = new FormData()
+        formdata.append('userImg', this.file)
+        formdata.append('id', window.localStorage.userId)
+        formdata.append('nickname', this.form.name)
+        formdata.append('birth', day)
+        formdata.append('sex', this.form.sex)
+        formdata.append('desc', this.form.desc)
+        axios.post('/common/userInfo.html', formdata, config).then(this.handleLoginSucc.bind(this))
         .catch(this.handleLoginErr.bind(this))
-        console.log(this.form.name)
-        console.log(this.form.date1.toLocaleDateString())
-        console.log(this.form.sex)
-        console.log(this.form.desc)
       } else {
         this.$message({
           message: '请填写完整！',
@@ -123,6 +129,13 @@ export default {
         center: true
       })
     }
+  },
+  mounted () {
+    this.form.name = window.localStorage.userName
+    this.form.desc = window.localStorage.desc
+    this.form.sex = window.localStorage.sex
+    this.form.date1 = window.localStorage.birth
+    console.log(this.form)
   }
 }
 </script>
@@ -163,18 +176,34 @@ export default {
     flex: 1;
   }
   .header-info {
-    background: url(../../../static/img/bg.jpg) no-repeat center;
-    background-size: 90% 100%;
+    background: #ffbf1c;
     height: 3.5rem;
     padding-top: 1rem; 
     margin-bottom: .2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    cursor: pointer;
+  .imgPub {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
     position: relative;
-    overflow: hidden;
-    margin-top: 1rem;
+    background: #fff;
+  }
+  .userimg {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .file {
+    opacity: 0;
+    height: 150%;
+    width: 100%;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   .avatar-uploader .el-upload:hover {
     border-color: #409EFF;
@@ -201,7 +230,7 @@ export default {
   }
   .changeTxt {
     text-align: center;
-    margin-top: .6rem;
+    margin-top: .4rem;
   }
   .changeTxt span {
     background: rgba(255,255,255,.5);
@@ -216,5 +245,10 @@ export default {
   }
   .el-form-item {
     margin-bottom: .2rem;
+  }
+  .el-upload__input {
+    display: block;
+    height: 100%;
+    width: 100%;
   }
 </style>

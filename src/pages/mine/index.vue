@@ -8,7 +8,8 @@
                   :showInfo="showInfo"
                   :fansNum="fansNum"
                   :attentionNum="attentionNum"
-                  :word="word"></welcome-box>
+                  :word="word"
+                  :desc="desc"></welcome-box>
     
     <mine-icons></mine-icons>
 
@@ -38,7 +39,10 @@ export default {
       fansNum: 0,
       attentionNum: 0,
       city: '',
-      word: '欢迎来到即刻出发！'
+      birth: '',
+      word: '欢迎来到即刻出发！',
+      desc: '',
+      sex: ''
     }
   },
   methods: {
@@ -53,16 +57,22 @@ export default {
     },
     handleGetDataSucc (res) {
       if (res.data) {
-        this.userimg = res.data.data.userimg || '../../../static/img/userdefault.png'
+        this.userimg = res.data.data.headImg || '../../../static/img/userdefault.png'
         this.nickname = res.data.data.nickname
         this.fansNum = res.data.data.fansNum
         this.attentionNum = res.data.data.attentionNum
+        this.birth = res.data.data.birth
+        this.desc = res.data.data.desc
+        this.sex = res.data.data.sex
       }
       window.localStorage.userName = this.nickname
       window.localStorage.userImg = this.userimg
+      window.localStorage.desc = this.desc || '这个人很懒，什么都没留下~'
+      window.localStorage.birth = this.birth
+      window.localStorage.sex = this.sex
     },
     handleGetDataErr () {
-      alert('服务器发生错误！')
+      console.log('服务器发生错误！')
     }
   },
   created () {
@@ -80,5 +90,8 @@ export default {
   .blank {
     flex: 1;
     background: #fff;
+    background: url(../../../static/img/tabikaeru.png) no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 1rem;
   }
 </style>

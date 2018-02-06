@@ -22,7 +22,7 @@
       </span>
       <span class="temp-num">
         {{headerInfo.temperature}}°
-        <i class="temp-icon"></i>
+        <i class="weather">{{headerInfo.weather}}</i>
       </span>
       <!-- <span class="more-img">
         339万张图片
@@ -136,10 +136,10 @@
     display: inline-block;
     width: .34rem;
     height: .34rem;
-    margin-top: .13rem;
     left: -0.54rem;
     background: url(../../../static/img/searchicon1.png);
     background-size: 100% 100%;
+    top: 0;
   }
   .city-temp {
     box-sizing:border-box;

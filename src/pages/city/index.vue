@@ -12,6 +12,7 @@
   import citySearch from './citySearch'
   import cityList from './cityList'
   export default {
+    name: 'city',
     components: {
       cityHeader,
       citySearch,

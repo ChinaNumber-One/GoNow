@@ -16,12 +16,8 @@
     	<span class="change">给我们打分</span>
     	<span class="iconfont">&#xe610;</span>
     </div>
-    <div class="item box4">
+    <div class="item box4" @click="aboutUs">
     	<span class="change">关于我们</span>
-    	<span class="iconfont">&#xe610;</span>
-    </div>
-    <div class="item box5">
-    	<span class="change">关于即刻出发</span>
     	<span class="iconfont">&#xe610;</span>
     </div>
     <div class="blank">
@@ -66,8 +62,10 @@ export default {
     goFeedback () {
       this.$router.push('/goFeedback')
     },
+    aboutUs () {
+      this.$router.push('/aboutUs')
+    },
     changeInfo () {
-      console.log(window.localStorage.isLogin)
       if (window.localStorage.isLogin) {
         this.$router.push('/changeInfo')
       } else {
@@ -119,7 +117,7 @@ export default {
 	.box1 {
 		margin:.2rem 0;
 	}
-	.box3,.box5 {
+	.box3,.box4 {
 		margin-bottom: .2rem;  
 	}
 	.blank {

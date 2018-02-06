@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Destination from '@/pages/destination/index'
 import City from '@/pages/city/index'
 import Chinesemap from '@/pages/map/map.vue'
+import Customservice from '@/pages/mine/customservice.vue'
 import Mine from '@/pages/mine/index.vue'
 import Hotel from '@/pages/hotel/index'
 import Login from '@/pages/login/login.vue'
@@ -12,6 +13,7 @@ import Setting from '@/pages/setting/index.vue'
 import TravelsDetail from '@/pages/home/travelsDetail/selectionDetail.vue'
 import StrategyDetail from '@/pages/home/strategyDetail/selectionDetail.vue'
 import Ticket from '@/pages/home/ticket.vue'
+import Train from '@/pages/home/train.vue'
 import Photography from '@/pages/home/photography.vue'
 import StrategyList from '@/pages/home/strategyList/index.vue'
 import TravelsList from '@/pages/home/travelsList/index.vue'
@@ -19,6 +21,8 @@ import SearchPage from '@/pages/home/searchPage/index.vue'
 import GetPoients from '@/pages/setting/getPoients.vue'
 import GoFeedback from '@/pages/setting/goFeedback.vue'
 import ChangeInfo from '@/pages/setting/changeInfo.vue'
+import AboutUs from '@/pages/setting/aboutUs.vue'
+import Diary from '@/pages/mine/mydiary/diary.vue'
 
 Vue.use(Router)
 
@@ -54,6 +58,10 @@ export default new Router({
       name: 'mine',
       component: Mine
     }, {
+      path: '/customservice',
+      name: 'customservice',
+      component: Customservice
+    }, {
       path: '/message',
       name: 'message',
       component: Message
@@ -78,6 +86,10 @@ export default new Router({
       name: 'changeInfo',
       component: ChangeInfo
     }, {
+      path: '/aboutUs',
+      name: 'aboutUs',
+      component: AboutUs
+    }, {
       path: '/travelsDetail/:id',
       name: 'travelsDetail',
       component: TravelsDetail
@@ -94,6 +106,10 @@ export default new Router({
       name: 'ticket',
       component: Ticket
     }, {
+      path: '/train',
+      name: 'train',
+      component: Train
+    }, {
       path: '/strategyList',
       name: 'strategyList',
       component: StrategyList
@@ -105,6 +121,10 @@ export default new Router({
       path: '/searchPage',
       name: 'searchPage',
       component: SearchPage
+    }, {
+      path: '/diary',
+      name: 'diary',
+      component: Diary
     }
   ]
 })

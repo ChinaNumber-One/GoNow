@@ -20,7 +20,7 @@
 import BScroll from 'better-scroll'
 import { mapMutations } from 'vuex'
 export default {
-  props: ['cityList', 'router'],
+  props: ['cityList', 'router', 'type'],
   data () {
     return {
       showList: false,
@@ -43,19 +43,27 @@ export default {
   },
   methods: {
     handleChooseCity (city) {
-      console.log(this.router)
+      console.log(this.$route)
       this.getCity(city)
       this.$nextTick(() => {
         if (this.router === 'destination') {
+          console.log('destination')
           this.$router.push('/destination/' + city)
         } else if (this.router === 'hotel') {
+          console.log('hotel')
           this.$router.push('/hotel')
         } else if (this.router === 'ticket') {
+          console.log('ticket')
+          if (this.type === 'from') {
+            this.getStartPlace(city)
+          } else if (this.type === 'to') {
+            this.getEndPlace(city)
+          }
           this.$router.push('/ticket')
         }
       })
     },
-    ...mapMutations(['getCity']),
+    ...mapMutations(['getCity', 'getStartPlace', 'getEndPlace']),
     handleInputChange (e) {
       const value = e.target.value.toLowerCase()
       if (value) {

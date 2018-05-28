@@ -42,12 +42,18 @@ export default {
         autoplayDisableOnInteraction: false,
         onSlideChangeStart: function (swiper) {
           this.indexNum = (swiper.activeIndex) % 4
+        }.bind(this),
+        onInit: function (swiper) {
+          this.swiperInfo = swiper
         }.bind(this)
       }
     }
   },
   methods: {
-    changeSwiper (index) {},
+    changeSwiper (index) {
+      this.indexNum = index
+      this.swiperInfo.slideTo(index, 300, true)
+    },
     gotoDetail (id) {
       this.$router.push('/travelsDetail/ ' + id)
     }

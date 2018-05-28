@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/common': {
-        target: 'http://localhost:8080',
+        target: 'https://localhost:8080',
         pathRewrite: {
         '^/common': 'static'
         }

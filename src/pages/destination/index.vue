@@ -45,6 +45,7 @@
     methods: {
       ...mapMutations(['getCity']),
       getDestData () {
+        console.log(this.city)
         axios.get('/common/place.html?city=' + this.city)
           .then(this.handleGetDataSucc.bind(this))
           .catch(this.handleGetDataErr.bind(this))

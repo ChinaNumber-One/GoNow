@@ -10,15 +10,17 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
-<script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+<script type="text/javascript" src="https://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
 <script type="text/javascript">
     var mycity = remote_ip_info['city'];
     var province = remote_ip_info["province"];
+    console.log(remote_ip_info)
     window.localStorage.city = mycity;
     window.localStorage.province = province;
 
     function foo(json) {
         window.localStorage.ip = json.ip;
+        console.log(json)
     }
 </script>
-<script type="text/javascript" src="http://freegeoip.net/json/?callback=foo"></script>
+<script type="text/javascript" src="https://freegeoip.net/json/?callback=foo"></script>

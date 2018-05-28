@@ -7,7 +7,7 @@
         <div class="swiper-info">
           <p class="swiper-title">{{item.title}}</p>
           <p class="swiper-numbers">
-           <span class="swiper-time">时间：<i>{{item.createdDate}}</i></span>
+            <span class="swiper-time">时间：<i>{{item.createdDate}}</i></span>
             <span class="swiper-place">地点：<i>{{item.place}}</i></span>
           </p>
         </div>
@@ -61,6 +61,7 @@ export default {
       this.swiperInfo.slideTo(index, 300, true)
     },
     gotoDetail (e, id) {
+      console.log(1)
       console.log(e)
       this.$router.push('/strategyDetail/ ' + id)
     }
